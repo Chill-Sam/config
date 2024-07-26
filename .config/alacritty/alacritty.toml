@@ -1,0 +1,33 @@
+[font]
+size = 14
+
+[font.normal]
+family = "Cascadia Code"
+style = "Regular"
+
+[font.bold]
+family = "Cascadia Code"
+style = "Bold"
+
+[font.italic]
+family = "Cascadia Code"
+style = "Italic"
+
+[font.bold_italic]
+family = "Cascadia Code"
+style = "Bold Italic"
+
+[window]
+opacity = 0.75
+
+[window.padding]
+x = 15
+y = 15
+
+[window.dimensions]
+columns = 240
+lines = 50
+
+[cursor.style]
+shape = "Underline"
+blinking = "Always"
