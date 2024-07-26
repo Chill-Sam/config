@@ -1,0 +1,78 @@
+configuration {
+  /*** General Settings ***/
+  modi: "drun,run,filebrowser,window";
+  case-senditive: false;
+  cycle: true;
+  filter: "";
+  scroll-method: 1;
+  show-icons: true;
+  icon-theme: "Adwaita";
+  steal-focus: false;
+
+  /*** Matching Settings ***/
+  matching: "normal";
+  tokenize: true;
+
+  /*** Drun Settings ***/
+  drun-categories: "";
+  drun-match-fields: "name,generic,exec,categories,keywords";
+  drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
+  drun-show-actions: false;
+  drun-use-desktop-cache: false;
+  drun-reload-desktop-cache: false;
+  drun {
+    parse-user: true;
+    parse-system: true;
+  }
+
+  /*** Run Settings ***/
+  run-command: "{cmd}";
+  run-list-command: "";
+  run-shell-command: "{terminal} -e {cmd}";
+
+  /*** Fallback Icon ***/
+  run, drun{
+    fallback-icon: "application-x-addon";
+  }
+
+  /*** Window Switcher Settings ***/
+  window-match-fields: "title,class,role,name,desktop";
+  window-command: "wmctrl -i -R {window}";
+  window-format: "{w} - {c} - {t:0}";
+  window-thumbnail: false;
+
+  /*** History and Sorting ***/
+  disable-history: false;
+  sorting-method: "normal";
+  max-history-size: 25;
+
+  /*** Display Setting ***/
+  display-window: "Windows";
+  display-windowcd: "Window CD";
+  display-run: "Run";
+  display-ssh: "SSH";
+  display-drun: "Apps";
+  display-combi: "Combi";
+  display-keys: "Keys";
+  display-filebrowser: "Files";
+
+  /*** Misc Settings ***/
+  terminal: "alacritty";
+  font: "CaskaydiaCoveNerdFontPropo 12";
+  sort: false;
+  threads: 0;
+  click-to-exit: true;
+
+  /*** File Browser Settings ***/
+  filebrowser {
+    directories-first: true;
+    sorting-method: "name";
+  }
+
+  /*** Other Settings ***/
+  timeout {
+    action: "kb-cancel";
+    delay: 0;
+  }
+}
+
