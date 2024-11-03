@@ -17,6 +17,7 @@ vim.g.have_nerd_font = true
 -- [[ Setting options ]]
 -- Make line numbers default
 vim.opt.number = true
+vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -91,13 +92,8 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-
-vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], { desc = 'Move focus to the left window' })
-vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], { desc = 'Move focus to the right window' })
+vim.keymap.set('t', '<C-w>h', [[<Cmd>wincmd h<CR>]], { desc = 'Move focus to the left window' })
+vim.keymap.set('t', '<C-w>l', [[<Cmd>wincmd l<CR>]], { desc = 'Move focus to the right window' })
 
 -- [[ Basic Autocommands ]]
 -- Highlight when yanking (copying) text
@@ -191,6 +187,7 @@ require('lazy').setup({
             require('telescope.themes').get_dropdown(),
           },
         },
+        defaults = { file_ignore_patterns = { 'vendor' } },
       }
 
       -- Enable Telescope extensions if they are installed
@@ -335,14 +332,18 @@ require('lazy').setup({
         end,
       })
 
+      local lspconfig = require 'lspconfig'
+      local util = lspconfig.util
+      lspconfig.util.default_config = vim.tbl_extend('force', lspconfig.util.default_config, {
+        root_dir = util.find_git_ancestor,
+      })
+
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
       -- Enable the following language servers
       local servers = {
         clangd = {},
-        -- gopls = {},
-        -- pyright = {},
         rust_analyzer = {},
         arduino_language_server = {},
         lua_ls = {
@@ -414,7 +415,7 @@ require('lazy').setup({
         -- Conform can also run multiple formatters sequentially
         python = { 'isort', 'black' },
         --
-        -- javascript = { { "prettierd", "prettier" } },
+        javascript = { 'prettier' },
       },
     },
   },
@@ -600,6 +601,11 @@ require('lazy').setup({
       terminal_mappings = true,
       size = 60,
     },
+  },
+  {
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    config = true,
   },
 }, {
   ui = {
