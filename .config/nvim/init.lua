@@ -432,6 +432,7 @@ require("lazy").setup({
             -- Enable the following language servers
             local servers = {
                 rust_analyzer = {},
+                stimulus_ls = {},
                 clangd = {},
                 tsserver = {},
                 lua_ls = {
@@ -582,6 +583,7 @@ require("lazy").setup({
             end,
 
             formatters_by_ft = {
+                php = { "pretty-php" },
                 lua = { "stylua" },
                 css = { "prettier" },
                 html = { "prettier" },
