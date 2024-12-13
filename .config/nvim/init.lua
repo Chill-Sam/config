@@ -131,7 +131,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- [[ Plugins ]]
 require('lazy').setup({
-    { -- Theme
+    {                    -- Theme
         'navarasu/onedark.nvim',
         priority = 1000, -- Load first
         opts = {
@@ -221,7 +221,7 @@ require('lazy').setup({
 
     'numToStr/Comment.nvim', -- "gc" to comment
 
-    'tpope/vim-sleuth', -- Tab detection
+    'tpope/vim-sleuth',      -- Tab detection
 
     {
         'echasnovski/mini.statusline',
@@ -570,6 +570,8 @@ require('lazy').setup({
 
             formatters_by_ft = {
                 lua = { 'stylua' },
+                css = { 'prettier' },
+                html = { 'prettier' },
                 javascript = { 'prettier' },
             },
 
