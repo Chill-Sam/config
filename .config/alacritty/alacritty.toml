@@ -2,19 +2,19 @@
 size = 14
 
 [font.normal]
-family = "Cascadia Code"
+family = "Cascadia Code NF"
 style = "Regular"
 
 [font.bold]
-family = "Cascadia Code"
+family = "Cascadia Code NF"
 style = "Bold"
 
 [font.italic]
-family = "Cascadia Code"
+family = "Cascadia Code NF"
 style = "Italic"
 
 [font.bold_italic]
-family = "Cascadia Code"
+family = "Cascadia Code NF"
 style = "Bold Italic"
 
 [window]
