@@ -101,6 +101,9 @@ vim.keymap.set(
     { desc = "Show diagnostic [E]rror messages" }
 )
 
+-- [[ Sudo write ]]
+vim.cmd.cnoreabbrev("w!! SudoWrite")
+
 -- [[ Basic Autocommands ]]
 -- Highlight when yanking (copying) text
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -220,6 +223,14 @@ require("lazy").setup({
     },
 
     "numToStr/Comment.nvim", -- "gc" to comment
+
+    {
+        "denialofsandwich/sudo.nvim",
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+        },
+        config = true,
+    },
 
     "tpope/vim-sleuth", -- Tab detection
 
