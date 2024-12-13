@@ -15,6 +15,7 @@ alias vi='nvim'
 alias vim='nvim'
 alias top='bashtop'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias sshcs='ssh chillsam@chillsam.ddns.net -p'
 #PS1='[\u@\h \W]\$ '
 
 
