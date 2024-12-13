@@ -16,7 +16,7 @@ alias vim='nvim'
 alias top='bashtop'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias sshcs='ssh chillsam@chillsam.ddns.net -p'
-alias attach='tmux attach -t'
+alias ta='tmux attach -t'
 #PS1='[\u@\h \W]\$ '
 
 
