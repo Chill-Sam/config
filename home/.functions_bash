@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cd() { builtin cd "$@" && /usr/sbin/clear && ls -a --color=auto; }
