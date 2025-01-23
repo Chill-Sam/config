@@ -10,12 +10,11 @@ git config --global user.email "jonathan@wahrenberg.com"
 
 # Generate SSH key
 
+ssh-keygen -t ed25519 -C "jonathan@wahrenberg.com" 
+
 read -p "Enter the file name for the SSH key (default: ~/.ssh/id_ed25519): " ssh_key_file
 
 ssh_key_file=${ssh_key_file:-~/.ssh/id_ed25519}
-
-ssh-keygen -t ed25519 -C "jonathan@wahrenberg.com" -f "$ssh_key_file" -N ""
-
 
 # Add SSH key to the SSH agent
 
