@@ -8,6 +8,7 @@
 # Bashrc starts here
 
 export HISTCONTROL=ignoreboth
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
 
 source $HOME/.functions_bash
 
