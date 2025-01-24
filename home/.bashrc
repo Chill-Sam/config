@@ -22,6 +22,7 @@ alias ff='fastfetch'
 bind -x '"\C-l":"clear && ls -a && ssprompt"' 
 bind -x '"\C-b":"cd - && ssprompt"' 
 bind -x '"\C-g":"git status && ssprompt"'
+bind -x '"\C-n":"clear && ff && ls && ssprompt"'
 
 eval "$(starship init bash)"
 
