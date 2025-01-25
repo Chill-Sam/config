@@ -1,12 +1,6 @@
 #!/bin/bash
 
-if [ -z "$1" ]; then 
-	echo "Select a type"
-fi
-
-if [ "$1" == "terminal" ]; then
-	cp -a config_files/terminal/. $HOME/.config
-fi
+cp -a config_files/terminal/. $HOME/.config
 
 starship preset tokyo-night -o ~/.config/starship.toml
 echo "Starship setup"
