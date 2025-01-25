@@ -12,5 +12,5 @@ starship preset tokyo-night -o ~/.config/starship.toml
 echo "Starship setup"
 
 cp -a home/. $HOME/
-exec bash --rcfile "$HOME/.bashrc"
-echo "Sourced .bashrc successfully"
+rm $HOME/.bash* 
+exec /bin/zsh

@@ -7,3 +7,6 @@ fastfetch
 ripgrep
 unzip
 tmux
+zsh
+zsh-autosuggestions
+zsh-syntax-highlighting
