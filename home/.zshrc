@@ -20,9 +20,10 @@ alias ff='clear && fastfetch'
 alias vi='nvim'
 alias vim='nvim'
 alias nv='nvim'
+alias ta='tmux attach -t'
 
 
-cd() { builtin cd "$@" && /usr/sbin/clear && ls -a --color=auto; }
+cd() { builtin cd "$@" && clear && ls -a --color=auto; }
 
 # Keybindings
 function _zsh_ctrl_l() {
@@ -56,5 +57,5 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 eval "$(starship init zsh)"
 
 clear
-ff
+lolcat msg
 ls -a --color=auto 
