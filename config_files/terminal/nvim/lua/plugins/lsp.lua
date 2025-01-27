@@ -4,9 +4,23 @@ return {
         dependencies = {
             { "williamboman/mason.nvim", config = true },
             "williamboman/mason-lspconfig.nvim",
+            "j-hui/fidget.nvim",
+            "folke/neodev.nvim",
         },
 
         config = function()
+            local lspconfig = require("lspconfig")
+            local util = lspconfig.util
+
+            -- Force all LSP servers to look for the nearest .git folder
+            lspconfig.util.default_config =
+                vim.tbl_extend("force", lspconfig.util.default_config, {
+                    root_dir = function(fname)
+                        return util.find_git_ancestor(fname)
+                            or util.path.dirname(fname)
+                    end,
+                })
+
             local servers = {
                 lua_ls = {
                     settings = {
@@ -18,6 +32,69 @@ return {
                     },
                 },
             }
+
+            vim.api.nvim_create_autocmd("LspAttach", {
+                group = vim.api.nvim_create_augroup(
+                    "lsp-attach",
+                    { clear = true }
+                ),
+                callback = function(ev)
+                    local map = function(k, f, d)
+                        vim.keymap.set("n", k, f, { buffer = ev.buf, desc = d })
+                    end
+
+                    map(
+                        "gd",
+                        require("telescope.builtin").lsp_definitions,
+                        "[G]oto [D]efinition"
+                    )
+                    map(
+                        "gI",
+                        require("telescope.builtin").lsp_implementations,
+                        "[G]oto [I]mplementation"
+                    )
+                    map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+                    map("K", vim.lsp.buf.hover, "Hover")
+
+                    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+
+                    if
+                        client
+                        and client.server_capabilities.documentHighlightProvider
+                    then
+                        local grp =
+                            vim.api.nvim_create_augroup("lsp-highlight", {})
+                        vim.api.nvim_create_autocmd(
+                            { "CursorHold", "CursorHoldI" },
+                            {
+                                buffer = ev.buf,
+                                group = grp,
+                                callback = vim.lsp.buf.document_highlight,
+                            }
+                        )
+                        vim.api.nvim_create_autocmd(
+                            { "CursorMoved", "CursorMovedI" },
+                            {
+                                buffer = ev.buf,
+                                group = grp,
+                                callback = vim.lsp.buf.clear_references,
+                            }
+                        )
+                    end
+
+                    if
+                        client
+                        and client.server_capabilities.inlayHintProvider
+                        and vim.lsp.inlay_hint
+                    then
+                        map("<leader>th", function()
+                            vim.lsp.inlay_hint.enable(
+                                not vim.lsp.inlay_hint.is_enabled()
+                            )
+                        end, "Toggle Inlay Hints")
+                    end
+                end,
+            })
 
             require("mason").setup()
             require("mason-lspconfig").setup({

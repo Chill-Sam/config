@@ -33,4 +33,4 @@ set.splitbelow = true
 
 -- Whitespace
 set.list = true
-set.listchars = {tab = "» ", trail = "·", nbsp = "␣" }
+set.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
