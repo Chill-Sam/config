@@ -8,6 +8,7 @@ bindkey -v
 
 # Exports
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
+export PATH=/home/chillsam/.cargo/bin:$PATH
 
 # Aliases
 alias ls='ls --color=auto'
@@ -15,8 +16,11 @@ alias la='ls -a --color=auto'
 alias ll='ls -al --color=auto'
 alias grep='grep --color=auto'
 alias ssprompt='STARSHIP_SHELL=none starship prompt --status=0 --cmd-duration=0'
-alias ff='fastfetch'
-alias tst='echo "tst"'
+alias ff='clear && fastfetch'
+alias vi='nvim'
+alias vim='nvim'
+alias nv='nvim'
+
 
 cd() { builtin cd "$@" && /usr/sbin/clear && ls -a --color=auto; }
 
@@ -50,7 +54,6 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 eval "$(starship init zsh)"
-source <(COMPLETE=zsh tms)
 
 clear
 ff
