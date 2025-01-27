@@ -57,5 +57,5 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 eval "$(starship init zsh)"
 
 clear
-lolcat msg
+ff
 ls -a --color=auto 
