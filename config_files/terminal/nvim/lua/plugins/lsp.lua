@@ -3,6 +3,7 @@ return {
         "neovim/nvim-lspconfig",
         dependencies = {
             { "williamboman/mason.nvim", config = true },
+            "stevearc/dressing.nvim",
             "williamboman/mason-lspconfig.nvim",
             "j-hui/fidget.nvim",
             "folke/neodev.nvim",
@@ -22,6 +23,8 @@ return {
                 })
 
             local servers = {
+                stimulus_ls = {},
+                ts_ls = {},
                 lua_ls = {
                     settings = {
                         Lua = {
@@ -117,7 +120,7 @@ return {
             "WhoIsSethDaniel/mason-tool-installer.nvim",
         },
         config = function()
-            local formatters = { "stylua" }
+            local formatters = { "stylua", "prettier", "pretty-php" }
 
             require("mason").setup()
             require("mason-tool-installer").setup({
@@ -127,6 +130,10 @@ return {
             require("conform").setup({
                 formatters_by_ft = {
                     lua = { "stylua" },
+                    html = { "prettier" },
+                    css = { "prettier" },
+                    javascript = { "prettier" },
+                    php = { "pretty-php" },
                 },
 
                 formatters = {
@@ -137,6 +144,14 @@ return {
                             "--indent-type",
                             "Spaces",
                             "--column-width",
+                            "80",
+                        },
+                    },
+                    prettier = {
+                        prepend_args = {
+                            "--tab-width",
+                            "4",
+                            "--print-width",
                             "80",
                         },
                     },
@@ -157,7 +172,7 @@ return {
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
-            "L3MON4DE/LuaSnip",
+            "L3MON4D3/LuaSnip",
             "saadparwaiz1/cmp_luasnip",
         },
         config = function()
