@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cp -r config_files/terminal/nvim $HOME/.config/
+cp -r $HOME/config/config_files/terminal/nvim $HOME/.config/
 
