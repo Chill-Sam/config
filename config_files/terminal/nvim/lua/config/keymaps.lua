@@ -31,3 +31,6 @@ map(
 map("n", "<leader>f", function()
     require("conform").format({ lsp_fallback = true })
 end, { desc = "Format with Conform" })
+
+-- Sudo write
+vim.cmd.cnoreabbrev("w!! SudoWrite")
