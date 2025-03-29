@@ -23,6 +23,24 @@ return {
                 })
 
             local servers = {
+                clangd = {
+                    on_attach = on_attach,
+                    capabilities = capabilities,
+                    cmd = {
+                        "clangd",
+                        "--background-index",
+                        "-j=12",
+                        "--query-driver=**",
+                        "--clang-tidy",
+                        "--all-scopes-completion",
+                        "--cross-file-rename",
+                        "--completion-style=detailed",
+                        "--header-insertion-decorators",
+                        "--header-insertion=iwyu",
+                        "--pch-storage=memory",
+                        "--suggest-missing-includes",
+                    },
+                },
                 stimulus_ls = {},
                 ts_ls = {},
                 lua_ls = {
@@ -120,7 +138,8 @@ return {
             "WhoIsSethDaniel/mason-tool-installer.nvim",
         },
         config = function()
-            local formatters = { "stylua", "prettier", "pretty-php" }
+            local formatters =
+                { "stylua", "prettier", "pretty-php", "clang-format" }
 
             require("mason").setup()
             require("mason-tool-installer").setup({
@@ -134,6 +153,8 @@ return {
                     css = { "prettier" },
                     javascript = { "prettier" },
                     php = { "pretty-php" },
+                    arduino = { "clang_format" },
+                    cpp = { "clang_format" },
                 },
 
                 formatters = {
@@ -153,6 +174,11 @@ return {
                             "4",
                             "--print-width",
                             "80",
+                        },
+                    },
+                    clang_format = {
+                        args = {
+                            "--style={BasedOnStyle: llvm, IndentWidth: 4}",
                         },
                     },
                 },
