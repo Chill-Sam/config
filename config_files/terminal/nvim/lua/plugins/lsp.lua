@@ -41,6 +41,24 @@ return {
                         "--suggest-missing-includes",
                     },
                 },
+                rust_analyzer = {
+                    imports = {
+
+                        granularity = {
+                            group = "module",
+                        },
+                        prefix = "self",
+                    },
+                    cargo = {
+                        buildScripts = {
+
+                            enable = true,
+                        },
+                    },
+                    procMacro = {
+                        enable = true,
+                    },
+                },
                 stimulus_ls = {},
                 ts_ls = {},
                 lua_ls = {

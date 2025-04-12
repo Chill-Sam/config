@@ -5,6 +5,9 @@ map("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
 
 map("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
 
+-- Exit insert softly with Ctrl + c
+map("i", "<C-c>", "<Esc>", { noremap = true, silent = true })
+
 -- Close highlighting when searching
 map("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
