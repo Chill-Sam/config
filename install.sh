@@ -39,3 +39,6 @@ sudo pacman -S --needed --noconfirm $(cat "$PACKAGE_LIST_FILE")
 
 
 echo "All packages installed successfully."
+
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+echo "Installed tpm!"
