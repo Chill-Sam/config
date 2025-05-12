@@ -8,7 +8,7 @@ bindkey -v
 
 # Exports
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
-export PATH=/home/chillsam/.cargo/bin:$PATH
+export PATH=/home/chillsam/.local/scripts:/home/chillsam/.cargo/bin:$PATH
 
 # Aliases
 alias ls='ls --color=auto'
@@ -40,7 +40,7 @@ bindkey '^B' _zsh_ctrl_b
 
 function _zsh_ctrl_g() {
 
-  git status && ssprompt
+  git status 2> /dev/null && ssprompt
 }
 zle -N _zsh_ctrl_g
 bindkey '^G' _zsh_ctrl_g
@@ -51,7 +51,11 @@ function _zsh_ctrl_n() {
 zle -N _zsh_ctrl_n
 bindkey '^N' _zsh_ctrl_n
 
-bindkey -s ^f "tmux-sessionizer\n"
+function _zsh_ctrl_f() {
+  tmux-sessionizer
+}
+zle -N _zsh_ctrl_f
+bindkey '^F' _zsh_ctrl_f
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh

@@ -11,4 +11,4 @@ zsh
 zsh-autosuggestions
 zsh-syntax-highlighting
 python
-arduino
+fzf
