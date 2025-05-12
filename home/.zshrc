@@ -51,11 +51,7 @@ function _zsh_ctrl_n() {
 zle -N _zsh_ctrl_n
 bindkey '^N' _zsh_ctrl_n
 
-function _zsh_ctrl_f() {
-  tmux-sessionizer
-}
-zle -N _zsh_ctrl_f
-bindkey '^F' _zsh_ctrl_f
+bindkey -s '^F' "tmux-sessionizer\n"
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
