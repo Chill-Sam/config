@@ -9,6 +9,7 @@ bindkey -v
 # Exports
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 export PATH=/home/chillsam/.local/scripts:/home/chillsam/.cargo/bin:$PATH
+export EDITOR=nvim
 
 # Aliases
 alias ls='ls --color=auto'
