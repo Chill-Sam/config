@@ -26,20 +26,32 @@ return {
                 clangd = {
                     on_attach = on_attach,
                     capabilities = capabilities,
+                    -- Point explicitly at Espressif’s clangd binary:
                     cmd = {
-                        "clangd",
-                        "--background-index",
-                        "-j=12",
-                        "--query-driver=**",
-                        "--clang-tidy",
-                        "--all-scopes-completion",
-                        "--cross-file-rename",
-                        "--completion-style=detailed",
-                        "--header-insertion-decorators",
-                        "--header-insertion=iwyu",
-                        "--pch-storage=memory",
-                        "--suggest-missing-includes",
+                        vim.fn.expand(
+                            "~/.espressif/tools/esp-clang/esp-18.1.2_20240912/esp-clang/bin/clangd"
+                        ),
                     },
+                    root_dir = require("lspconfig.util").root_pattern(
+                        "compile_commands.json",
+                        ".clangd",
+                        ".git"
+                    ),
+                    -- you can tweak capabilities or on_attach here as usual
+                    -- cmd = {
+                    --     "clangd",
+                    --     "--background-index",
+                    --     "-j=12",
+                    --     "--query-driver=**",
+                    --     "--clang-tidy",
+                    --     "--all-scopes-completion",
+                    --     "--cross-file-rename",
+                    --     "--completion-style=detailed",
+                    --     "--header-insertion-decorators",
+                    --     "--header-insertion=iwyu",
+                    --     "--pch-storage=memory",
+                    --     "--suggest-missing-includes",
+                    -- },
                 },
                 rust_analyzer = {
                     imports = {
@@ -59,8 +71,9 @@ return {
                         enable = true,
                     },
                 },
-                stimulus_ls = {},
                 ts_ls = {},
+                stimulus_ls = {},
+                eslint = {},
                 lua_ls = {
                     settings = {
                         Lua = {
@@ -94,6 +107,11 @@ return {
                     )
                     map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
                     map("K", vim.lsp.buf.hover, "Hover")
+                    map(
+                        "<leader>ca",
+                        vim.lsp.buf.code_action,
+                        "[C]ode [A]ction"
+                    )
 
                     local client = vim.lsp.get_client_by_id(ev.data.client_id)
 
